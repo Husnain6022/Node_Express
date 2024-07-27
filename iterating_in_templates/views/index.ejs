@@ -10,22 +10,20 @@
 <body>
   <h1>
     <!-- Tite goes here -->
-     <%= items['title'] %>
+     <%= title %>
   </h1>
   <p>Current second:
     <!-- Current second goes here -->
-     <%= items['seconds'] %>
+     <%= seconds %>
   </p>
-  <%  if (items['seconds'] % 2===0) { %>
+  <%  if (seconds % 2===0) { %>
   
     <!-- List goes here if current second is even. -->
-      <% for (i = 0; i < items['fruits'].length ; i++) { %>
+      <% fruits.forEach((fruit) => { %>
       <ul>
-        <li><%= items['fruits'][i] %></li>
+        <li><%= fruit %></li>
       </ul>
-      <% } %>
-
- 
+      <% }) %>
  
     <!-- Otherwise it should display the following: -->
     <!-- <p>No items to display</p> -->
@@ -35,7 +33,7 @@
   <%  }  %>
   <p>
     <!-- HTML content goes here -->
-     <%- items['htmlContent'] %>
+     <%- htmlContent %>
   </p>
 
   <!-- Footer goes here -->

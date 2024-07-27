@@ -1,4 +1,4 @@
-import express, { response } from "express";
+import express from "express";
 
 const app = express();
 const port = 3000;
@@ -9,12 +9,13 @@ app.get("/", (request, response) => {
     seconds : new Date().getSeconds(),
     fruits : ["apple", "banana", "cherry"],
     htmlContent : "<em> This is an em element </em>"
-  }
+  };
 
-  response.render("index.ejs", { items : data })
+  console.log(data)
+  response.render("index.ejs", data);
 })
 
 
 app.listen(port, () => {
-  console.log(`The server is running on posr: ${port}`);
+  console.log(`The server is running on port: ${port}`);
 })
