@@ -4,6 +4,7 @@ import pg from "pg";
 import bcrypt from "bcrypt";
 import session from "express-session";
 import passport from "passport";
+import { Strategy } from "passport-local";
 
 
 const app = express();
@@ -20,7 +21,7 @@ app.use(session({
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-app.use(passport.initialize()))
+app.use(passport.initialize())
 app.use(passport.session())
 
 
@@ -86,9 +87,11 @@ app.post("/register", async (req, res) => {
 });
 
 app.post("/login", async (req, res) => {
-  const email = req.body.username;
-  const loginPassword = req.body.password;
+ 
+  
+});
 
+passport.use(new Strategy(async function verify(username, password, cb) {
   try {
     const result = await db.query("SELECT * FROM users WHERE email = $1", [
       email,
@@ -113,7 +116,8 @@ app.post("/login", async (req, res) => {
   } catch (err) {
     console.log(err);
   }
-});
+}))
+
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
