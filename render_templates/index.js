@@ -8,7 +8,6 @@ app.get("/", (request, response) => {
     const x = new Date();
     const today = x.getDay();
 
-    console.log(today);
     let day = 'weekday';
     let advice = "it's time to work hard";
 
